@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, Sparkles, Target, Compass, HeartHandshake, ShieldCheck, Award, Users } from "lucide-react";
+import { ArrowRight, Target, Compass, HeartHandshake, ShieldCheck, Award, Users } from "lucide-react";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";

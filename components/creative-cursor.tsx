@@ -343,7 +343,7 @@ export function CreativeCursor() {
       {/* 60fps Juice Splash, Ripples & Trail Canvas (Active on Both Desktop & Mobile Tap) */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
-      {/* Sparkle Citrus Glint on Links/Buttons (Desktop Only) */}
+      {/* Citrus Leaf Glint on Links/Buttons (Desktop Only, No AI Star) */}
       <div
         ref={lensRef}
         className={`hidden md:block absolute top-0 left-0 will-change-transform transition-opacity duration-150 ${
@@ -351,17 +351,17 @@ export function CreativeCursor() {
         }`}
       >
         <svg
-          width="18"
-          height="18"
+          width="16"
+          height="16"
           viewBox="0 0 24 24"
           fill="none"
-          className="-translate-x-5 -translate-y-5 animate-pulse"
+          className="-translate-x-4 -translate-y-4"
         >
           <path
-            d="M12 2L14.2 9.8L22 12L14.2 14.2L12 22L9.8 14.2L2 12L9.8 9.8L12 2Z"
-            fill="#FFC928"
-            stroke="#FF7A1A"
-            strokeWidth="1.2"
+            d="M4 20C4 11.5 10 5 20 4C19 14 12.5 20 4 20Z"
+            fill="#55B747"
+            stroke="#FFFFFF"
+            strokeWidth="1.5"
           />
         </svg>
       </div>

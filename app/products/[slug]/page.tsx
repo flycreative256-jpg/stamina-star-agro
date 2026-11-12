@@ -6,7 +6,6 @@ import { notFound } from "next/navigation";
 import {
   ArrowRight,
   ArrowLeft,
-  Sparkles,
   ShieldCheck,
   CheckCircle2,
   Droplets,
@@ -14,6 +13,7 @@ import {
   AlertCircle,
   MessageCircle,
 } from "lucide-react";
+import { CitrusSliceIcon } from "@/components/icons/stamina-icons";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { WhatsAppButton } from "@/components/whatsapp-button";
@@ -124,7 +124,7 @@ export default function ProductDetailPage({
                   {/* Brand & Flavour Identity */}
                   <div className="space-y-2">
                     <div className="inline-flex items-center gap-2 bg-[#FFF9ED] px-3.5 py-1 rounded-full border border-[#FF7A1A]/20">
-                      <Sparkles size={13} className="text-[#FF7A1A]" />
+                      <CitrusSliceIcon size={14} className="text-[#FF7A1A]" />
                       <span className="text-[11px] font-black uppercase tracking-widest text-[#173D2A]">
                         STAR AGRO FOODS • STAMINA JUICES
                       </span>

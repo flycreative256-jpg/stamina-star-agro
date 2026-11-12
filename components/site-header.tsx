@@ -3,7 +3,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowRight, Menu, X, Sparkles, MessageCircle } from "lucide-react";
+import { ArrowRight, Menu, X, MessageCircle } from "lucide-react";
+import { DistributorPartnerIcon } from "@/components/icons/stamina-icons";
 import { AnimatePresence, motion } from "motion/react";
 import { siteConfig } from "@/config/site";
 
@@ -128,7 +129,7 @@ export function SiteHeader({ light = false }: { light?: boolean }) {
               href="/distributorship"
               className="liquid-shine group inline-flex items-center gap-2 bg-gradient-to-r from-[#FF7A1A] to-[#FF9633] hover:from-[#e6660b] hover:to-[#FF7A1A] text-white text-xs xl:text-sm font-bold px-5 py-2.5 rounded-full transition-all duration-300 shadow-lg shadow-[#FF7A1A]/25 hover:shadow-xl hover:shadow-[#FF7A1A]/40 hover:-translate-y-0.5 border border-white/30"
             >
-              <Sparkles size={14} className="text-[#FFC928] transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
+              <DistributorPartnerIcon size={15} className="text-[#FFC928] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
               <span>Become a Distributor</span>
               <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
             </Link>
@@ -227,7 +228,7 @@ export function SiteHeader({ light = false }: { light?: boolean }) {
                   href="/distributorship"
                   className="liquid-shine flex items-center justify-center gap-2 w-full bg-[#FF7A1A] hover:bg-[#E6660B] text-white font-bold py-3.5 px-4 rounded-full text-center shadow-lg transition-transform"
                 >
-                  <Sparkles size={16} className="text-[#FFC928]" />
+                  <DistributorPartnerIcon size={16} className="text-[#FFC928]" />
                   <span>Become a Distributor</span>
                   <ArrowRight size={16} />
                 </Link>

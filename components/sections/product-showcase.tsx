@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowRight, Eye, Sparkles } from "lucide-react";
+import { ArrowRight, Eye } from "lucide-react";
+import { CitrusSliceIcon } from "@/components/icons/stamina-icons";
 import { motion } from "motion/react";
 import { products, type Product } from "@/data/products";
 
@@ -137,7 +138,7 @@ export function ProductShowcase({
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-14 sm:mb-20 space-y-4">
           <div className="inline-flex items-center gap-2 liquid-pill px-4 py-1.5 rounded-full">
-            <Sparkles size={13} className="text-[#FF7A1A]" />
+            <CitrusSliceIcon size={15} className="text-[#FF7A1A]" />
             <span className="text-xs font-black uppercase tracking-widest text-[#173D2A]">
               STAMINA PRODUCT COLLECTION
             </span>

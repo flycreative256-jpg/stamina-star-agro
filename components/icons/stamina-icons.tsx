@@ -312,3 +312,75 @@ export function VegLeafMarkIcon({ size = 16, className = "" }: IconProps) {
   );
 }
 
+/**
+ * Custom Halved Citrus Slice icon (replaces generic AI sparkle icons).
+ */
+export function CitrusSliceIcon({ size = 16, className = "" }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <circle
+        cx="12"
+        cy="12"
+        r="9.2"
+        fill="#FFC928"
+        fillOpacity="0.24"
+        stroke="currentColor"
+        strokeWidth="1.8"
+      />
+      <circle cx="12" cy="12" r="2.1" fill="currentColor" />
+      <path
+        d="M12 4.5V9.5M12 14.5V19.5M4.5 12H9.5M14.5 12H19.5M6.7 6.7L10.2 10.2M13.8 13.8L17.3 17.3M17.3 6.7L13.8 10.2M10.2 13.8L6.7 17.3"
+        stroke="currentColor"
+        strokeWidth="1.4"
+        strokeLinecap="round"
+        opacity="0.78"
+      />
+    </svg>
+  );
+}
+
+/**
+ * Custom B2B Distributor & Beverage Supply Growth icon.
+ */
+export function DistributorPartnerIcon({ size = 16, className = "" }: IconProps) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      viewBox="0 0 24 24"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+      className={className}
+    >
+      <path
+        d="M3.5 16.5L8.8 11.2L12.6 15L20 7.6"
+        stroke="currentColor"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M15.2 7.6H20V12.4"
+        stroke="currentColor"
+        strokeWidth="2.1"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <path
+        d="M4 20.5H20"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        opacity="0.6"
+      />
+    </svg>
+  );
+}
+

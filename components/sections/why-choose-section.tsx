@@ -1,13 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { Sparkles } from "lucide-react";
 import { motion } from "motion/react";
 import {
   MangoFruitIcon,
   FruitNectarDropIcon,
   ChilledBottleIcon,
   EverydayGlassIcon,
+  CitrusSliceIcon,
 } from "@/components/icons/stamina-icons";
 
 const pillars = [
@@ -133,7 +133,7 @@ export function WhyChooseSection() {
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-16 sm:mb-20 space-y-4">
           <div className="inline-flex items-center gap-2 liquid-pill px-4 py-1.5 rounded-full">
-            <Sparkles size={13} className="text-[#FF7A1A]" />
+            <CitrusSliceIcon size={15} className="text-[#FF7A1A]" />
             <span className="text-xs font-black uppercase tracking-widest text-[#173D2A]">
               THE STAMINA STANDARD
             </span>

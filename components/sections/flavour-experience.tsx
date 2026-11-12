@@ -4,8 +4,8 @@ import { useEffect, useRef } from "react";
 import Link from "next/link";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ArrowRight, Sparkles, CheckCircle } from "lucide-react";
-import { VegLeafMarkIcon } from "@/components/icons/stamina-icons";
+import { ArrowRight, CheckCircle } from "lucide-react";
+import { VegLeafMarkIcon, CitrusSliceIcon } from "@/components/icons/stamina-icons";
 import { products } from "@/data/products";
 
 export function FlavourExperience() {
@@ -78,7 +78,7 @@ export function FlavourExperience() {
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16 space-y-4">
           <div className="inline-flex items-center gap-2 liquid-pill px-4 py-1.5 rounded-full">
-            <Sparkles size={14} className="text-[#FF7A1A]" />
+            <CitrusSliceIcon size={15} className="text-[#FF7A1A]" />
             <span className="text-xs font-black uppercase tracking-widest text-[#173D2A]">
               INTERACTIVE FLAVOUR STACK
             </span>

@@ -4,7 +4,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   ArrowRight,
-  Sparkles,
   Pause,
   Play,
 } from "lucide-react";
@@ -12,6 +11,8 @@ import {
   VegLeafMarkIcon,
   ChilledBottleIcon,
   HygieneSealShieldIcon,
+  CitrusSliceIcon,
+  DistributorPartnerIcon,
 } from "@/components/icons/stamina-icons";
 import { motion, AnimatePresence } from "motion/react";
 import { products } from "@/data/products";
@@ -90,7 +91,7 @@ export function HeroSection() {
               transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="inline-flex items-center gap-2 liquid-pill px-4 py-2 rounded-full"
             >
-              <Sparkles size={13} className="text-[#FF7A1A]" />
+              <CitrusSliceIcon size={15} className="text-[#FF7A1A]" />
               <span className="text-[11px] font-black uppercase tracking-[0.18em] text-[#173D2A]">
                 STAR AGRO FOODS &bull; STAMINA™
               </span>
@@ -139,11 +140,11 @@ export function HeroSection() {
 
               <Link
                 href="/distributorship"
-                className="liquid-shine group w-full sm:w-auto min-h-[50px] inline-flex items-center justify-center gap-2 liquid-pill text-[#111F17] font-bold text-sm sm:text-base px-7 py-3.5 rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg"
+                className="liquid-shine group w-full sm:w-auto min-h-[50px] inline-flex items-center justify-center gap-2.5 liquid-pill text-[#111F17] font-bold text-sm sm:text-base px-7 py-3.5 rounded-full transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg whitespace-nowrap"
               >
-                <Sparkles
-                  size={15}
-                  className="text-[#FF7A1A] transition-transform duration-300 group-hover:rotate-12"
+                <DistributorPartnerIcon
+                  size={17}
+                  className="text-[#FF7A1A] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 shrink-0"
                 />
                 <span>Become a Distributor</span>
               </Link>

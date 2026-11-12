@@ -8,13 +8,8 @@ import {
   CheckCircle2,
   LoaderCircle,
   AlertTriangle,
-  Send,
-  Building2,
-  Phone,
-  Mail,
-  MapPin,
-  Sparkles,
 } from "lucide-react";
+import { CitrusSliceIcon } from "@/components/icons/stamina-icons";
 import {
   enquirySchema,
   type EnquiryInput,
@@ -151,7 +146,7 @@ export function EnquiryForm({
 
       <div className="relative mb-8 space-y-2">
         <div className="inline-flex items-center gap-2 bg-[#FFF9ED] border border-[#FF7A1A]/20 px-3 py-1 rounded-full text-xs font-bold text-[#FF7A1A]">
-          <Sparkles size={13} className="text-[#FFC928]" />
+          <CitrusSliceIcon size={14} className="text-[#FF7A1A]" />
           <span>STAR AGRO FOODS • STAMINA JUICES</span>
         </div>
         <h3 className="text-2xl sm:text-3xl font-extrabold text-[#17251D] tracking-tight">
