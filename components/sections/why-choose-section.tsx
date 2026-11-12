@@ -74,11 +74,12 @@ function PillarCard({
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.2 }}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
+      viewport={{ once: true, amount: 0.1 }}
+      transition={{ duration: 0.45, delay: index * 0.06 }}
       whileHover={{ y: -8, scale: 1.015 }}
+      whileTap={{ scale: 0.98 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}

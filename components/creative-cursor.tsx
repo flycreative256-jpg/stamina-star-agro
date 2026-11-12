@@ -31,8 +31,11 @@ type Ripple = {
 
 type CursorMode = "default" | "interactive" | "product" | "hidden";
 
+const JUICE_PALETTE = ["#FFC928", "#FF7A1A", "#E83D6F", "#55B747", "#B81835"];
+
 export function CreativeCursor() {
   const [mounted, setMounted] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   const [mode, setMode] = useState<CursorMode>("hidden");
   const [label, setLabel] = useState("");
   const [accent, setAccent] = useState("#FF7A1A");
@@ -54,6 +57,10 @@ export function CreativeCursor() {
 
   useEffect(() => {
     setMounted(true);
+    const coarse =
+      window.matchMedia("(pointer: coarse)").matches &&
+      !window.matchMedia("(any-pointer: fine)").matches;
+    setIsTouchDevice(coarse);
   }, []);
 
   useEffect(() => {
@@ -88,7 +95,7 @@ export function CreativeCursor() {
       });
     };
 
-    const spawnClickSplash = (x: number, y: number, color: string) => {
+    const spawnClickSplash = (x: number, y: number, color: string, count = 12) => {
       ripplesRef.current.push({
         x,
         y,
@@ -98,36 +105,37 @@ export function CreativeCursor() {
         color,
       });
 
-      const count = 12;
       for (let i = 0; i < count; i++) {
         const angle = (Math.PI * 2 * i) / count + (Math.random() - 0.5) * 0.3;
-        const speed = Math.random() * 3.6 + 2.2;
+        const speed = Math.random() * 3.4 + 2.0;
         particlesRef.current.push({
           x,
           y,
           vx: Math.cos(angle) * speed,
           vy: Math.sin(angle) * speed - 0.9,
-          radius: Math.random() * 3.2 + 2.0,
+          radius: Math.random() * 3.0 + 2.0,
           alpha: 0.95,
           color: i % 2 === 0 ? color : "#FFC928",
-          decay: 0.03,
+          decay: 0.032,
         });
       }
     };
 
     const loop = () => {
-      const target = mouseRef.current;
-      lensPosRef.current.x += (target.x - lensPosRef.current.x) * 0.2;
-      lensPosRef.current.y += (target.y - lensPosRef.current.y) * 0.2;
+      if (!isTouchDevice) {
+        const target = mouseRef.current;
+        lensPosRef.current.x += (target.x - lensPosRef.current.x) * 0.2;
+        lensPosRef.current.y += (target.y - lensPosRef.current.y) * 0.2;
 
-      if (coreRef.current) {
-        coreRef.current.style.transform = `translate3d(${target.x}px, ${target.y}px, 0) translate(-25%, -15%)`;
-      }
-      if (lensRef.current) {
-        lensRef.current.style.transform = `translate3d(${lensPosRef.current.x}px, ${lensPosRef.current.y}px, 0) translate(-50%, -50%)`;
-      }
-      if (pillRef.current) {
-        pillRef.current.style.transform = `translate3d(${lensPosRef.current.x + 22}px, ${lensPosRef.current.y + 22}px, 0)`;
+        if (coreRef.current) {
+          coreRef.current.style.transform = `translate3d(${target.x}px, ${target.y}px, 0) translate(-25%, -15%)`;
+        }
+        if (lensRef.current) {
+          lensRef.current.style.transform = `translate3d(${lensPosRef.current.x}px, ${lensPosRef.current.y}px, 0) translate(-50%, -50%)`;
+        }
+        if (pillRef.current) {
+          pillRef.current.style.transform = `translate3d(${lensPosRef.current.x + 22}px, ${lensPosRef.current.y + 22}px, 0)`;
+        }
       }
 
       const ctx = canvas?.getContext("2d");
@@ -218,7 +226,22 @@ export function CreativeCursor() {
 
     rafId = requestAnimationFrame(loop);
 
+    // Mobile Touch Splash Handler
+    const onTouchStart = (e: TouchEvent) => {
+      const touch = e.touches[0];
+      if (!touch) return;
+      const target = e.target as HTMLElement | null;
+      if (target?.closest("input, textarea, select, iframe")) return;
+
+      const productEl = target?.closest<HTMLElement>("[data-cursor-flavour]");
+      const color =
+        productEl?.dataset.cursorColor ||
+        JUICE_PALETTE[Math.floor(Math.random() * JUICE_PALETTE.length)];
+      spawnClickSplash(touch.clientX, touch.clientY, color, 8);
+    };
+
     const onMove = (e: MouseEvent) => {
+      if (isTouchDevice) return;
       if (!cursorActiveRef.current) {
         cursorActiveRef.current = true;
         document.documentElement.classList.add("has-creative-cursor");
@@ -280,6 +303,7 @@ export function CreativeCursor() {
     };
 
     const onDown = (e: MouseEvent) => {
+      if (isTouchDevice) return;
       setPressed(true);
       const target = e.target as HTMLElement | null;
       if (!target?.closest("input, textarea, select, iframe")) {
@@ -290,6 +314,7 @@ export function CreativeCursor() {
     const onUp = () => setPressed(false);
     const onLeave = () => setMode("hidden");
 
+    window.addEventListener("touchstart", onTouchStart, { passive: true });
     window.addEventListener("mousemove", onMove, { passive: true });
     window.addEventListener("mousedown", onDown);
     window.addEventListener("mouseup", onUp);
@@ -299,27 +324,29 @@ export function CreativeCursor() {
       cancelAnimationFrame(rafId);
       document.documentElement.classList.remove("has-creative-cursor");
       window.removeEventListener("resize", resizeCanvas);
+      window.removeEventListener("touchstart", onTouchStart);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("mousedown", onDown);
       window.removeEventListener("mouseup", onUp);
       document.removeEventListener("mouseleave", onLeave);
     };
-  }, [mounted]);
+  }, [mounted, isTouchDevice]);
 
   if (!mounted) return null;
 
-  const isHidden = mode === "hidden";
+  const isHidden = isTouchDevice || mode === "hidden";
   const isProduct = mode === "product";
   const isInteractive = mode === "interactive";
 
   return (
-    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden hidden md:block">
+    <div className="pointer-events-none fixed inset-0 z-[9999] overflow-hidden">
+      {/* 60fps Juice Splash, Ripples & Trail Canvas (Active on Both Desktop & Mobile Tap) */}
       <canvas ref={canvasRef} className="absolute inset-0 w-full h-full" />
 
-      {/* Sparkle Citrus Glint on Links/Buttons (Zero Circle!) */}
+      {/* Sparkle Citrus Glint on Links/Buttons (Desktop Only) */}
       <div
         ref={lensRef}
-        className={`absolute top-0 left-0 will-change-transform transition-opacity duration-150 ${
+        className={`hidden md:block absolute top-0 left-0 will-change-transform transition-opacity duration-150 ${
           !isHidden && isInteractive ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -342,7 +369,7 @@ export function CreativeCursor() {
       {/* Offset Floating Liquid Glass "Taste [Flavour]" Badge */}
       <div
         ref={pillRef}
-        className={`absolute top-0 left-0 will-change-transform transition-opacity duration-200 ${
+        className={`hidden md:block absolute top-0 left-0 will-change-transform transition-opacity duration-200 ${
           !isHidden && isProduct ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -361,10 +388,10 @@ export function CreativeCursor() {
         </div>
       </div>
 
-      {/* Leaf-Crowned Glossy Juice-Droplet Pointer (No Circle) */}
+      {/* Leaf-Crowned Glossy Juice-Droplet Pointer (Desktop Only) */}
       <div
         ref={coreRef}
-        className={`absolute top-0 left-0 will-change-transform transition-opacity duration-150 ${
+        className={`hidden md:block absolute top-0 left-0 will-change-transform transition-opacity duration-150 ${
           isHidden ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -378,7 +405,6 @@ export function CreativeCursor() {
             transform: `rotate(-20deg) scale(${pressed ? 0.8 : isInteractive ? 1.15 : 1})`,
           }}
         >
-          {/* Fresh Green Leaf Sprout */}
           <path
             d="M12.5 5.5C13.5 2.4 16.4 1 19.6 1.5C18.8 4.6 16.2 6.2 12.5 5.5Z"
             fill="#55B747"
@@ -386,7 +412,6 @@ export function CreativeCursor() {
             strokeWidth="1.1"
             strokeLinejoin="round"
           />
-          {/* Glossy Fruit Juice Droplet */}
           <path
             d="M11 4.5C11 4.5 3.5 12.8 3.5 18C3.5 22 6.8 24.8 11 24.8C15.2 24.8 18.5 22 18.5 18C18.5 12.8 11 4.5 11 4.5Z"
             fill={accent}
@@ -394,7 +419,6 @@ export function CreativeCursor() {
             strokeWidth="1.6"
             strokeLinejoin="round"
           />
-          {/* Glossy Highlight */}
           <path
             d="M7.5 16.8C7.4 19 8.6 20.8 10.4 21.3"
             stroke="rgba(255,255,255,0.9)"

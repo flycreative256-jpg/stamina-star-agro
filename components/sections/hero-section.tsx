@@ -271,38 +271,77 @@ export function HeroSection() {
               })}
             </div>
 
-            {/* Mobile: Clean Single Active Stage */}
-            <div className="sm:hidden relative aspect-[3/4] max-w-[340px] mx-auto w-full liquid-glass-strong rounded-[28px] p-2 shadow-xl">
-              <div className="relative w-full h-full rounded-[22px] overflow-hidden bg-white">
-                <AnimatePresence mode="wait">
-                  <motion.img
-                    key={currentProduct.id}
-                    src={currentProduct.image}
-                    alt={currentProduct.name}
-                    initial={{ opacity: 0.3, scale: 1.03 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0.3 }}
-                    transition={{ duration: 0.55 }}
-                    className="w-full h-full object-cover object-center"
-                  />
-                </AnimatePresence>
-                <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 via-black/40 to-transparent text-white flex items-end justify-between gap-3">
-                  <div className="min-w-0">
-                    <span className="text-[10px] font-black uppercase tracking-widest text-[#FFC928] block">
-                      {currentProduct.flavour} &bull; 250 ml
-                    </span>
-                    <h3 className="text-base font-extrabold leading-tight truncate">
-                      {currentProduct.name}
-                    </h3>
-                  </div>
-                  <Link
-                    href={`/products/${currentProduct.slug}`}
-                    className="shrink-0 bg-white text-[#173D2A] text-xs font-bold px-3.5 py-2 rounded-full shadow-sm"
-                  >
-                    View
-                  </Link>
-                </div>
+            {/* Mobile: Interactive Swipeable Multi-Bottle Stage */}
+            <div className="sm:hidden relative max-w-[300px] mx-auto w-full pt-2 pb-1">
+              {/* Peeking Prev & Next Bottle Slices */}
+              <div className="absolute inset-y-4 -left-4 w-24 rounded-3xl overflow-hidden opacity-60 -rotate-6 scale-90 liquid-glass p-1 pointer-events-none">
+                <img
+                  src={products[(selectedIdx - 1 + products.length) % products.length].image}
+                  alt=""
+                  className="w-full h-full object-cover rounded-2xl"
+                />
               </div>
+              <div className="absolute inset-y-4 -right-4 w-24 rounded-3xl overflow-hidden opacity-60 rotate-6 scale-90 liquid-glass p-1 pointer-events-none">
+                <img
+                  src={products[(selectedIdx + 1) % products.length].image}
+                  alt=""
+                  className="w-full h-full object-cover rounded-2xl"
+                />
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, y: -28, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 0.85, ease: [0.34, 1.56, 0.64, 1] }}
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.22}
+                onDragEnd={(_, info) => {
+                  if (info.offset.x < -40) {
+                    setSelectedIdx((prev) => (prev + 1) % products.length);
+                    setIsPaused(true);
+                  } else if (info.offset.x > 40) {
+                    setSelectedIdx((prev) => (prev - 1 + products.length) % products.length);
+                    setIsPaused(true);
+                  }
+                }}
+                whileTap={{ scale: 0.98 }}
+                className="relative z-10 aspect-[3/4] w-full liquid-glass-strong rounded-[28px] p-2 shadow-2xl touch-pan-y"
+              >
+                <div className="relative w-full h-full rounded-[22px] overflow-hidden bg-white">
+                  <AnimatePresence mode="wait">
+                    <motion.img
+                      key={currentProduct.id}
+                      src={currentProduct.image}
+                      alt={currentProduct.name}
+                      initial={{ opacity: 0, scale: 1.06, x: 24 }}
+                      animate={{ opacity: 1, scale: 1, x: 0 }}
+                      exit={{ opacity: 0, scale: 0.96, x: -24 }}
+                      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+                      className="w-full h-full object-cover object-center pointer-events-none"
+                    />
+                  </AnimatePresence>
+                  <div className="absolute inset-x-0 bottom-0 p-4 bg-gradient-to-t from-black/85 via-black/40 to-transparent text-white flex items-end justify-between gap-3">
+                    <div className="min-w-0">
+                      <span className="text-[10px] font-black uppercase tracking-widest text-[#FFC928] block">
+                        {currentProduct.flavour} &bull; 250 ml
+                      </span>
+                      <h3 className="text-base font-extrabold leading-tight truncate">
+                        {currentProduct.name}
+                      </h3>
+                    </div>
+                    <Link
+                      href={`/products/${currentProduct.slug}`}
+                      className="shrink-0 bg-white text-[#173D2A] text-xs font-bold px-3.5 py-2 rounded-full shadow-sm active:scale-95 transition-transform"
+                    >
+                      View
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+              <p className="text-center text-[10px] font-bold uppercase tracking-widest text-[#173D2A]/60 mt-2">
+                Swipe bottle or tap flavour
+              </p>
             </div>
 
             {/* Bottom Flavour Selector + Auto-Play Toggle */}

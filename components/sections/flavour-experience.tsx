@@ -94,72 +94,76 @@ export function FlavourExperience() {
         </div>
 
         {/* Sticky Scroll-Stacking Cards Container */}
-        <div className="flex flex-col gap-8 sm:gap-10 pb-[4vh]">
+        <div className="flex flex-col gap-6 sm:gap-10 pb-[4vh]">
           {products.map((product, idx) => (
             <article
               key={product.id}
               className="stamina-stack-card sticky"
               style={{
-                top: `calc(84px + ${idx * 16}px)`,
+                top: `calc(70px + ${idx * 12}px)`,
                 zIndex: idx + 1,
               }}
             >
               <div
-                className="stamina-card-inner liquid-glass-strong relative overflow-hidden rounded-[28px] sm:rounded-[34px] p-6 sm:p-10 shadow-2xl border border-white/90"
+                className="stamina-card-inner liquid-glass-strong relative overflow-hidden rounded-[24px] sm:rounded-[34px] p-5 sm:p-10 shadow-2xl border border-white/90"
+                data-cursor-flavour={product.flavour}
+                data-cursor-color={product.palette.accent}
                 style={{
                   backgroundColor: product.palette.background,
                 }}
               >
                 {/* Flavour Corner Glow */}
                 <div
-                  className="absolute -top-24 -right-24 w-72 h-72 rounded-full blur-3xl opacity-45 pointer-events-none"
+                  className="hidden sm:block absolute -top-24 -right-24 w-72 h-72 rounded-full blur-3xl opacity-45 pointer-events-none"
                   style={{ backgroundColor: product.palette.glow }}
                 />
 
                 {/* Squeeze Dim Overlay */}
-                <div className="stamina-card-dim absolute inset-0 bg-[#0F281B] opacity-0 pointer-events-none z-20 rounded-[28px] sm:rounded-[34px]" />
+                <div className="stamina-card-dim absolute inset-0 bg-[#0F281B] opacity-0 pointer-events-none z-20 rounded-[24px] sm:rounded-[34px]" />
 
-                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
+                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-5 sm:gap-8 lg:gap-10 items-center">
                   {/* Left: Editorial Flavour Story */}
-                  <div className="stamina-card-content lg:col-span-7 space-y-5 order-2 lg:order-1">
+                  <div className="stamina-card-content lg:col-span-7 space-y-3.5 sm:space-y-5 order-2 lg:order-1">
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <span
-                        className="text-xs font-black uppercase tracking-widest"
+                        className="text-[11px] sm:text-xs font-black uppercase tracking-widest"
                         style={{ color: product.palette.accent }}
                       >
                         0{idx + 1} &bull; {product.tagline}
                       </span>
-                      <span className="liquid-pill px-3 py-1 rounded-full text-[11px] font-bold text-[#173D2A]">
+                      <span className="liquid-pill px-2.5 sm:px-3 py-1 rounded-full text-[10px] sm:text-[11px] font-bold text-[#173D2A]">
                         250 ml PET
                       </span>
                     </div>
 
-                    <h3 className="text-2xl sm:text-4xl font-black text-[#111F17] tracking-tight">
+                    <h3 className="text-xl sm:text-4xl font-black text-[#111F17] tracking-tight">
                       {product.name}
                     </h3>
 
-                    <p className="text-sm sm:text-base text-[#28382F] font-medium leading-relaxed">
+                    <p className="text-xs sm:text-base text-[#28382F] font-medium leading-relaxed line-clamp-2 sm:line-clamp-none">
                       {product.description}
                     </p>
 
                     {/* Sensory Notes */}
-                    <div className="flex flex-wrap gap-2">
-                      {product.tastingNotes.map((note) => (
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                      {product.tastingNotes.map((note, noteIdx) => (
                         <div
                           key={note}
-                          className="liquid-pill flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold text-[#173D2A]"
+                          className={`${
+                            noteIdx >= 2 ? "hidden sm:flex" : "flex"
+                          } liquid-pill items-center gap-1.5 px-3 py-1 sm:py-1.5 rounded-full text-[11px] sm:text-xs font-semibold text-[#173D2A]`}
                         >
-                          <CheckCircle size={13} className="text-[#55B747]" />
+                          <CheckCircle size={12} className="text-[#55B747]" />
                           <span>{note}</span>
                         </div>
                       ))}
                     </div>
 
                     {/* Specs + CTAs */}
-                    <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <div className="pt-1 sm:pt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-2.5 sm:gap-3">
                       <Link
                         href={`/products/${product.slug}`}
-                        className="liquid-shine group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#173D2A] hover:bg-[#0F281B] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full shadow-lg transition-all hover:-translate-y-0.5"
+                        className="liquid-shine group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#173D2A] hover:bg-[#0F281B] text-white font-bold text-xs sm:text-sm px-6 py-3 sm:py-3.5 rounded-full shadow-lg transition-all active:scale-95"
                       >
                         <span>Full Product Profile</span>
                         <ArrowRight
@@ -170,12 +174,12 @@ export function FlavourExperience() {
 
                       <Link
                         href={`/distributorship?product=${encodeURIComponent(product.name)}`}
-                        className="liquid-shine w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FF7A1A] hover:bg-[#E6660B] text-white font-bold text-xs sm:text-sm px-6 py-3.5 rounded-full shadow-lg transition-all hover:-translate-y-0.5"
+                        className="liquid-shine w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FF7A1A] hover:bg-[#E6660B] text-white font-bold text-xs sm:text-sm px-6 py-3 sm:py-3.5 rounded-full shadow-lg transition-all active:scale-95"
                       >
                         <span>Distribute {product.flavour}</span>
                       </Link>
 
-                      <span className="inline-flex items-center justify-center sm:justify-start gap-1.5 text-xs font-bold text-[#55B747] px-2">
+                      <span className="hidden sm:inline-flex items-center gap-1.5 text-xs font-bold text-[#55B747] px-2">
                         <VegLeafMarkIcon size={15} />
                         100% Vegetarian
                       </span>
@@ -184,7 +188,7 @@ export function FlavourExperience() {
 
                   {/* Right: Product Bottle Image */}
                   <div className="stamina-card-media lg:col-span-5 flex justify-center order-1 lg:order-2">
-                    <div className="relative w-full max-w-[260px] sm:max-w-[300px] aspect-[3/4] rounded-[24px] overflow-hidden shadow-xl border-2 border-white bg-white">
+                    <div className="relative w-full max-w-[240px] sm:max-w-[300px] aspect-[4/3] sm:aspect-[3/4] rounded-[20px] sm:rounded-[24px] overflow-hidden shadow-xl border-2 border-white bg-white">
                       <img
                         src={product.image}
                         alt={product.name}
