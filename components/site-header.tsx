@@ -39,20 +39,20 @@ export function SiteHeader({ light = false }: { light?: boolean }) {
     <>
       <header
         className={`sticky top-0 z-50 transition-all duration-500 ${
-          scrolled ? "pt-3 pb-2 px-3 sm:px-6" : light ? "py-4 px-4 sm:px-8" : "py-3.5 px-4 sm:px-8"
+          scrolled ? "pt-2.5 pb-2 px-3 sm:px-6" : light ? "py-3 px-3 sm:px-8" : "py-3 px-3 sm:px-8"
         }`}
       >
         <div
-          className={`max-w-7xl mx-auto transition-all duration-500 flex items-center justify-between ${
+          className={`max-w-7xl mx-auto transition-all duration-500 flex items-center justify-between gap-2 ${
             scrolled
-              ? "glass-header rounded-full px-4 sm:px-6 py-2.5 shadow-xl"
-              : "liquid-glass rounded-full px-4 sm:px-6 py-2.5"
+              ? "glass-header rounded-full px-3.5 sm:px-6 py-2 sm:py-2.5 shadow-xl"
+              : "liquid-glass rounded-full px-3.5 sm:px-6 py-2 sm:py-2.5"
           }`}
         >
           {/* Logo & Corporate Identity */}
           <Link
             href="/"
-            className="flex items-center gap-3 group focus:outline-none"
+            className="flex items-center gap-2.5 sm:gap-3 group focus:outline-none shrink-0"
             aria-label="STAMINA Fruit Drinks by STAR AGRO FOODS"
           >
             <motion.div
@@ -63,14 +63,14 @@ export function SiteHeader({ light = false }: { light?: boolean }) {
               <img
                 src="/media/stamina-logo.png"
                 alt="STAMINA Logo"
-                className="h-9 sm:h-11 w-auto object-contain drop-shadow-xs"
+                className="h-8 sm:h-11 w-auto object-contain drop-shadow-xs"
               />
             </motion.div>
-            <div className="hidden sm:flex flex-col border-l border-[#173D2A]/15 pl-3">
-              <span className="text-[10px] font-black uppercase tracking-widest text-[#173D2A]/80">
+            <div className="flex flex-col border-l border-[#173D2A]/15 pl-2.5 sm:pl-3">
+              <span className="text-[9px] sm:text-[10px] font-black uppercase tracking-widest text-[#173D2A]/85 leading-tight">
                 STAR AGRO FOODS
               </span>
-              <span className="text-[9px] font-bold text-[#FF7A1A] tracking-wider">
+              <span className="text-[8px] sm:text-[9px] font-bold text-[#FF7A1A] tracking-wider leading-tight">
                 FRUIT JUICES
               </span>
             </div>

@@ -166,13 +166,13 @@ function DistributorshipContent() {
                 </p>
               </div>
 
-              <div className="flex flex-wrap items-center gap-3">
+              <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
                 {siteConfig.whatsapp && (
                   <a
                     href={`https://wa.me/${siteConfig.whatsapp}?text=Hello%20STAR%20AGRO%20FOODS,%20I%20want%20to%20discuss%20STAMINA%20distributorship.`}
                     target="_blank"
                     rel="noreferrer"
-                    className="inline-flex items-center gap-2 bg-[#25D366] text-white text-xs font-bold px-5 py-3 rounded-full hover:bg-[#20bd5a] transition-all"
+                    className="inline-flex items-center justify-center gap-2 bg-[#25D366] text-white text-xs font-bold px-5 py-3 rounded-full hover:bg-[#20bd5a] transition-all"
                   >
                     <MessageCircle size={16} />
                     <span>WhatsApp Chat</span>
@@ -180,7 +180,7 @@ function DistributorshipContent() {
                 )}
                 <a
                   href={`tel:${siteConfig.phone.replace(/\s+/g, "")}`}
-                  className="inline-flex items-center gap-2 bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-5 py-3 rounded-full border border-white/20 transition-all"
+                  className="inline-flex items-center justify-center gap-2 bg-white/10 hover:bg-white/20 text-white text-xs font-bold px-5 py-3 rounded-full border border-white/20 transition-all"
                 >
                   <PhoneCall size={16} />
                   <span>Call {siteConfig.phoneDisplay}</span>

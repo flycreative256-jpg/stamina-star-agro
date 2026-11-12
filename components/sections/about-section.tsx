@@ -106,10 +106,10 @@ export function AboutSection() {
             </div>
 
             {/* CTAs */}
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
               <Link
                 href="/about"
-                className="liquid-shine group inline-flex items-center gap-2 bg-[#173D2A] hover:bg-[#0F281B] text-white font-bold text-sm px-7 py-3.5 rounded-full shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
+                className="liquid-shine group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#173D2A] hover:bg-[#0F281B] text-white font-bold text-sm px-7 py-3.5 rounded-full shadow-lg transition-all hover:-translate-y-0.5 hover:shadow-xl"
               >
                 <span>Read Our Story</span>
                 <ArrowRight
@@ -120,7 +120,7 @@ export function AboutSection() {
 
               <Link
                 href="/quality"
-                className="group inline-flex items-center gap-2 text-sm font-bold text-[#173D2A] hover:text-[#FF7A1A] transition-colors px-4 py-2"
+                className="group w-full sm:w-auto inline-flex items-center justify-center gap-2 text-sm font-bold text-[#173D2A] hover:text-[#FF7A1A] transition-colors px-4 py-2.5"
               >
                 <span>Explore Quality & Standards</span>
                 <ArrowRight

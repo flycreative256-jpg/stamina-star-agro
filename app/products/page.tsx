@@ -46,13 +46,13 @@ export default function ProductsPage() {
           <section className="py-16 sm:py-24">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               {/* Filter Tabs */}
-              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12">
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12 max-w-md sm:max-w-none mx-auto">
                 <button
                   type="button"
                   onClick={() => setActiveFilter("all")}
-                  className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all cursor-pointer ${
+                  className={`col-span-2 sm:col-span-1 px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all cursor-pointer text-center ${
                     activeFilter === "all"
-                      ? "bg-[#173D2A] text-white shadow-md scale-105"
+                      ? "bg-[#173D2A] text-white shadow-md"
                       : "bg-white text-[#17251D] border border-[#173D2A]/15 hover:bg-[#FFF9ED]"
                   }`}
                 >
@@ -65,9 +65,9 @@ export default function ProductsPage() {
                       key={p.id}
                       type="button"
                       onClick={() => setActiveFilter(p.slug)}
-                      className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all flex items-center gap-2 cursor-pointer ${
+                      className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-all flex items-center justify-center gap-2 cursor-pointer ${
                         isSelected
-                          ? "bg-[#173D2A] text-white shadow-md scale-105"
+                          ? "bg-[#173D2A] text-white shadow-md"
                           : "bg-white text-[#17251D] border border-[#173D2A]/15 hover:bg-[#FFF9ED]"
                       }`}
                     >

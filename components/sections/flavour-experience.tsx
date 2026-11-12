@@ -53,7 +53,7 @@ export function FlavourExperience() {
 
           {/* Liquid Glass Flavour Switcher Dock */}
           <div className="pt-4 flex justify-center">
-            <div className="inline-flex flex-wrap items-center justify-center gap-1.5 liquid-glass p-1.5 rounded-full">
+            <div className="grid grid-cols-2 sm:inline-flex sm:flex-wrap items-center justify-center gap-1.5 liquid-glass p-1.5 rounded-2xl sm:rounded-full w-full sm:w-auto max-w-md sm:max-w-none">
               {products.map((item, idx) => {
                 const isSelected = idx === activeFlavourIdx;
                 return (
@@ -62,7 +62,7 @@ export function FlavourExperience() {
                     onClick={() => setActiveFlavourIdx(idx)}
                     type="button"
                     aria-pressed={isSelected}
-                    className={`relative px-5 py-2.5 rounded-full text-xs sm:text-sm font-extrabold transition-colors duration-300 flex items-center gap-2 cursor-pointer z-10 ${
+                    className={`relative px-4 sm:px-5 py-2.5 rounded-xl sm:rounded-full text-xs sm:text-sm font-extrabold transition-colors duration-300 flex items-center justify-center gap-2 cursor-pointer z-10 ${
                       isSelected ? "text-white" : "text-[#17251D] hover:text-[#173D2A]"
                     }`}
                   >
@@ -70,7 +70,7 @@ export function FlavourExperience() {
                       <motion.span
                         layoutId="flavour-suite-pill"
                         transition={{ type: "spring", stiffness: 360, damping: 28 }}
-                        className="absolute inset-0 rounded-full bg-[#173D2A] shadow-lg -z-10"
+                        className="absolute inset-0 rounded-xl sm:rounded-full bg-[#173D2A] shadow-lg -z-10"
                       />
                     )}
                     <span>{item.flavour}</span>
@@ -203,10 +203,10 @@ export function FlavourExperience() {
                   </div>
 
                   {/* CTAs */}
-                  <div className="pt-4 flex flex-wrap items-center gap-4">
+                  <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
                     <Link
                       href={`/products/${activeProduct.slug}`}
-                      className="liquid-shine group inline-flex items-center gap-2 bg-[#173D2A] hover:bg-[#0F281B] text-white font-bold text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-lg transition-all hover:-translate-y-0.5"
+                      className="liquid-shine group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#173D2A] hover:bg-[#0F281B] text-white font-bold text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-lg transition-all hover:-translate-y-0.5"
                     >
                       <span>Full Product Profile</span>
                       <ArrowRight
@@ -217,7 +217,7 @@ export function FlavourExperience() {
 
                     <Link
                       href={`/distributorship?product=${encodeURIComponent(activeProduct.name)}`}
-                      className="liquid-shine inline-flex items-center gap-2 bg-[#FF7A1A] hover:bg-[#E6660B] text-white font-bold text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-lg transition-all hover:-translate-y-0.5"
+                      className="liquid-shine w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FF7A1A] hover:bg-[#E6660B] text-white font-bold text-xs sm:text-sm px-7 py-3.5 rounded-full shadow-lg transition-all hover:-translate-y-0.5"
                     >
                       <span>Distribute {activeProduct.flavour}</span>
                     </Link>

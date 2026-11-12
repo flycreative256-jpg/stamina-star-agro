@@ -71,6 +71,7 @@
 html {
   scroll-behavior: smooth;
   color-scheme: light;
+  overflow-x: clip;
 }
 
 body {
@@ -78,7 +79,7 @@ body {
   background-color: var(--cream-white);
   color: var(--dark-text);
   font-family: var(--font-sans);
-  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 h1, h2, h3, h4, h5, h6, .font-heading {

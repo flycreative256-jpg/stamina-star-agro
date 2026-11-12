@@ -80,15 +80,13 @@ function QualityStageCard({
       </div>
 
       <div className="relative z-10 space-y-1">
-        <div className="flex items-center gap-2">
-          <span className="text-[10px] font-black tracking-widest text-[#FFC928]/85">
-            STAGE {stage.step}
-          </span>
-          <h4 className="text-sm sm:text-base font-bold text-white">
-            {stage.title}
-          </h4>
-        </div>
-        <p className="text-xs sm:text-[13px] text-white/80 leading-relaxed">
+        <span className="text-[10px] font-black tracking-widest text-[#FFC928]/90 block">
+          STAGE {stage.step}
+        </span>
+        <h4 className="text-sm sm:text-base font-bold text-white leading-snug">
+          {stage.title}
+        </h4>
+        <p className="text-xs sm:text-[13px] text-white/80 leading-relaxed pt-0.5">
           {stage.description}
         </p>
       </div>
@@ -157,25 +155,25 @@ export function QualityPreviewSection() {
               </div>
 
               {/* Clean Fact Strip Below Image */}
-              <div className="grid grid-cols-3 gap-2.5 pt-3">
-                <div className="bg-white/8 border border-white/10 rounded-2xl p-3 text-center">
-                  <span className="text-[10px] uppercase tracking-wider text-white/60 font-bold block">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-3">
+                <div className="bg-white/8 border border-white/10 rounded-2xl p-3 flex sm:flex-col items-center justify-between sm:justify-center text-left sm:text-center">
+                  <span className="text-[10px] uppercase tracking-wider text-white/65 font-bold block">
                     Regulatory
                   </span>
                   <span className="text-xs font-extrabold text-[#FFC928]">
                     FSSAI Compliant
                   </span>
                 </div>
-                <div className="bg-white/8 border border-white/10 rounded-2xl p-3 text-center">
-                  <span className="text-[10px] uppercase tracking-wider text-white/60 font-bold block">
+                <div className="bg-white/8 border border-white/10 rounded-2xl p-3 flex sm:flex-col items-center justify-between sm:justify-center text-left sm:text-center">
+                  <span className="text-[10px] uppercase tracking-wider text-white/65 font-bold block">
                     Container
                   </span>
                   <span className="text-xs font-extrabold text-white">
                     Food-Grade PET
                   </span>
                 </div>
-                <div className="bg-white/8 border border-white/10 rounded-2xl p-3 text-center">
-                  <span className="text-[10px] uppercase tracking-wider text-white/60 font-bold block">
+                <div className="bg-white/8 border border-white/10 rounded-2xl p-3 flex sm:flex-col items-center justify-between sm:justify-center text-left sm:text-center">
+                  <span className="text-[10px] uppercase tracking-wider text-white/65 font-bold block">
                     Handling
                   </span>
                   <span className="text-xs font-extrabold text-[#55B747]">
@@ -192,10 +190,10 @@ export function QualityPreviewSection() {
               <QualityStageCard key={stage.step} stage={stage} index={idx} />
             ))}
 
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="pt-4 flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
               <Link
                 href="/quality"
-                className="liquid-shine group inline-flex items-center gap-2 bg-[#FFC928] hover:bg-[#ffd552] text-[#173D2A] font-black text-sm px-7 py-3.5 rounded-full shadow-xl transition-all hover:-translate-y-0.5"
+                className="liquid-shine group w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-[#FFC928] hover:bg-[#ffd552] text-[#173D2A] font-black text-sm px-7 py-3.5 rounded-full shadow-xl transition-all hover:-translate-y-0.5"
               >
                 <span>Read Full Manufacturing Story</span>
                 <ArrowRight

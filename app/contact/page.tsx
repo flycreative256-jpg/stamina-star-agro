@@ -158,7 +158,7 @@ function ContactPageContent() {
               {/* Right Column: Tabbed Interactive Form */}
               <div className="lg:col-span-7">
                 {/* Form Type Switcher */}
-                <div className="flex items-center gap-2 mb-6 bg-white p-1.5 rounded-full border border-[#E8DECC] max-w-sm">
+                <div className="flex items-center gap-2 mb-6 bg-white p-1.5 rounded-full border border-[#E8DECC] w-full max-w-sm mx-auto lg:mx-0">
                   <button
                     type="button"
                     onClick={() => setFormType("distributor")}

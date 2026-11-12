@@ -30,8 +30,8 @@ export function SiteFooter() {
     <footer className="bg-[#173D2A] text-white pt-16 pb-12 border-t border-[#173D2A]/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Top Branding Strip */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 pb-14 border-b border-white/10">
-          <div className="lg:col-span-5 space-y-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12 pb-14 border-b border-white/10">
+          <div className="sm:col-span-2 lg:col-span-5 space-y-5">
             <div className="flex items-center gap-3">
               <div className="bg-white/95 p-2 rounded-xl shadow-md inline-block">
                 <img
@@ -81,7 +81,7 @@ export function SiteFooter() {
           </div>
 
           {/* Quick Links Column */}
-          <div className="lg:col-span-2 sm:col-span-4 space-y-4">
+          <div className="lg:col-span-2 space-y-4">
             <h4 className="text-xs font-extrabold uppercase tracking-widest text-[#FFC928]">
               Navigation
             </h4>
@@ -120,7 +120,7 @@ export function SiteFooter() {
           </div>
 
           {/* Juices Range Column */}
-          <div className="lg:col-span-2 sm:col-span-4 space-y-4">
+          <div className="lg:col-span-2 space-y-4">
             <h4 className="text-xs font-extrabold uppercase tracking-widest text-[#FFC928]">
               STAMINA Juices
             </h4>
@@ -145,7 +145,7 @@ export function SiteFooter() {
           </div>
 
           {/* Contact Details Column */}
-          <div className="lg:col-span-3 sm:col-span-4 space-y-4">
+          <div className="sm:col-span-2 lg:col-span-3 space-y-4">
             <h4 className="text-xs font-extrabold uppercase tracking-widest text-[#FFC928]">
               Corporate Desk
             </h4>

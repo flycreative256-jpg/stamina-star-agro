@@ -35,7 +35,7 @@ function ProductCard({
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onMouseMove={handleMouseMove}
-      className="snap-center shrink-0 w-[82vw] sm:w-[320px] lg:w-auto group relative liquid-glass-strong liquid-shine rounded-[32px] p-5 sm:p-6 transition-all duration-500 flex flex-col justify-between overflow-hidden hover:shadow-[0_28px_60px_-15px_rgba(23,61,42,0.24)]"
+      className="h-full group relative liquid-glass-strong liquid-shine rounded-[28px] sm:rounded-[32px] p-5 sm:p-6 transition-all duration-500 flex flex-col justify-between overflow-hidden hover:shadow-[0_28px_60px_-15px_rgba(23,61,42,0.24)]"
       style={{
         backgroundColor: hovered ? product.palette.cardBg : undefined,
       }}
@@ -151,8 +151,8 @@ export function ProductShowcase({
           </p>
         </div>
 
-        {/* Swipeable on mobile, 4-col grid on desktop */}
-        <div className="flex lg:grid lg:grid-cols-4 gap-6 lg:gap-7 overflow-x-auto lg:overflow-visible pb-6 lg:pb-0 snap-x snap-mandatory -mx-4 px-4 lg:mx-0 lg:px-0 [scrollbar-width:none]">
+        {/* Clean Responsive Grid (1-col mobile, 2-col tablet, 4-col desktop) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-7">
           {products.map((product, index) => (
             <ProductCard
               key={product.id}
