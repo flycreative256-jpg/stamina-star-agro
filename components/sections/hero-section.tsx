@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   ArrowRight,
   Sparkles,
-  ChevronDown,
   Pause,
   Play,
 } from "lucide-react";
@@ -43,10 +42,21 @@ export function HeroSection() {
     });
   };
 
+  const marqueeItems = [
+    { label: "STAMINA Mango", accent: "#FF7A1A" },
+    { label: "250 ml PET Bottle", accent: "#173D2A" },
+    { label: "STAMINA Litchi", accent: "#E63956" },
+    { label: "100% Vegetarian", accent: "#55B747" },
+    { label: "STAMINA Pink Guava", accent: "#E83D6F" },
+    { label: "FSSAI Certified Brand", accent: "#173D2A" },
+    { label: "STAMINA Pomegranate", accent: "#B81835" },
+    { label: "STAR AGRO FOODS", accent: "#FF7A1A" },
+  ];
+
   return (
     <section
       onMouseMove={handleMouseMove}
-      className={`relative lg:min-h-[calc(100vh-16px)] flex items-center justify-center overflow-hidden transition-colors duration-[1100ms] ease-out tone-${currentProduct.slug} pt-8 sm:pt-12 lg:-mt-20 lg:pt-28 pb-12 sm:pb-16`}
+      className={`relative lg:min-h-[calc(100vh-16px)] flex flex-col justify-between overflow-hidden transition-colors duration-[1100ms] ease-out tone-${currentProduct.slug} pt-8 sm:pt-12 lg:-mt-20 lg:pt-28 pb-6 sm:pb-8`}
       style={{
         backgroundColor: currentProduct.palette.background,
       }}
@@ -172,12 +182,18 @@ export function HeroSection() {
                     key={product.id}
                     onMouseEnter={() => setSelectedIdx(idx)}
                     onClick={() => setSelectedIdx(idx)}
+                    initial={{ opacity: 0, y: -48, scale: 0.86 }}
                     animate={{
+                      opacity: 1,
+                      y: 0,
+                      scale: 1,
                       flexGrow: isActive ? 3.4 : 0.85,
                     }}
                     transition={{
-                      duration: 0.75,
-                      ease: [0.22, 1, 0.36, 1],
+                      opacity: { duration: 0.5, delay: idx * 0.09 },
+                      y: { duration: 0.85, delay: idx * 0.09, ease: [0.34, 1.56, 0.64, 1] },
+                      scale: { duration: 0.85, delay: idx * 0.09, ease: [0.34, 1.56, 0.64, 1] },
+                      flexGrow: { duration: 0.75, ease: [0.22, 1, 0.36, 1] },
                     }}
                     style={{ flexBasis: 0 }}
                     className={`relative rounded-[28px] overflow-hidden cursor-pointer transition-shadow duration-500 ${
@@ -332,21 +348,27 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <a
-        href="#about-star-agro"
-        aria-label="Scroll to next section"
-        className="hidden sm:flex absolute bottom-4 left-1/2 -translate-x-1/2 flex-col items-center gap-1 text-[#173D2A]/75 hover:text-[#173D2A] transition-colors z-20"
-      >
-        <span className="text-[10px] font-black uppercase tracking-[0.2em]">Scroll</span>
-        <motion.div
-          animate={{ y: [0, 5, 0] }}
-          transition={{ duration: 2.8, repeat: Infinity, ease: "easeInOut" }}
-          className="liquid-pill p-1.5 rounded-full"
-        >
-          <ChevronDown size={14} />
-        </motion.div>
-      </a>
+      {/* Infinite Slow Edge-Faded Marquee Strip */}
+      <div className="w-full relative z-20 pt-4 pb-2 marquee-mask overflow-hidden">
+        <div className="marquee-track items-center">
+          {[...marqueeItems, ...marqueeItems, ...marqueeItems].map((item, idx) => (
+            <div
+              key={`${item.label}-${idx}`}
+              className="flex items-center mx-6 sm:mx-10 whitespace-nowrap"
+            >
+              <span
+                className="text-sm sm:text-base font-extrabold tracking-wide"
+                style={{ color: item.accent }}
+              >
+                {item.label}
+              </span>
+              <span className="ml-6 sm:ml-10 text-[#173D2A]/25 text-xs font-black">
+                &bull;
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
