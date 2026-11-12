@@ -349,6 +349,18 @@ h1, h2, h3, h4, h5, h6, .font-heading {
   animation-play-state: paused;
 }
 
+/* Hide default OS cursor on desktop when CreativeCursor is active */
+html.has-creative-cursor,
+html.has-creative-cursor * {
+  cursor: none !important;
+}
+
+html.has-creative-cursor input,
+html.has-creative-cursor textarea,
+html.has-creative-cursor select {
+  cursor: text !important;
+}
+
 /* Reduced motion accessibility */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
